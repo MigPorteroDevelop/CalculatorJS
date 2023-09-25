@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Calculator</title>
+</head>
+
+<body>
+  <section class="calculator h-screen bg-gray-200">
+    <div class="flex flex-col justify-center">
+      <div class="inputOperators py-4 grid justify-center"><input  id="showOperations" class="w-1/1 p-4 font-2 text-right rounded-lg shadow-md outline-none"></div>
+      <div id="containerButtons" class="containerButtons py-4 grid gap-1 justify-center"></div>
+    </div>
+    <script type="module" src="./Calculator.js"></script>
+  </section>
+</body>
+
+</html>
+
+<style>
+ .inputOperators input:focus{
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  .containerButtons {
+    grid-template-columns: repeat(3, 50px) 50px;
+  }
+
+  .containerButtons button {
+    background-color: white;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 5%;
+    text-align: center;
+    font-size: 2em;
+    margin-right: 1%;
+  }
+</style>
