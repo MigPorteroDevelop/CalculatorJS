@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Calculator</title>
+  </head>
+
+  <body>
+    <section class="flex justify-center items-center h-screen bg-gray-200">
+      <div id="calculator" class="w-60"></div>
+    </section>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
+
+<style>
+  .inputOperators input:focus{
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+</style>
