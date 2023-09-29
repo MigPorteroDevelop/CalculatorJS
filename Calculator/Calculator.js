@@ -1,14 +1,17 @@
 import Button from "./Button.js";
+const numbers = Button.numberList1;
 
 export default class {
   constructor(element) {
     this.element = element;
+    this.numbers = numbers;
     this.currentOperation = 0;
     this.currentResult = 0;
     this.inputEvaluator = this.createInputEvaluator();
     this.listButtons = this.createButtons();
     this.createEvents = this.createEvents();
   }
+
   createInputEvaluator() {
     const container = document.createElement("div");
     const inputCurrent = document.createElement("input");
@@ -26,6 +29,7 @@ export default class {
 
     this.element.append(container);
   }
+  
   createButtons() {
     const arrayButtons = [7, 8, 9, `%`, 4, 5, 6, `x`, 1, 2, 3, `-`, 0, `.`, `=`, `+`];
     const container = document.createElement("div");
@@ -44,10 +48,15 @@ export default class {
 
     return list;
   }
+  
   createEvents() {
     //const showOperations = document.getElementsByClassName("showOperations")
-       
-    
+    if (Array.isArray(this.numbers) && this.numbers.length == 0) {
+      console.log("El array está vacío");
+      console.log(this.numbers)
+    } else {
+      console.log("El array no está vacío");
+    }
     /* iterar o recorre los botones(this.listButtons) 
       por cada boton, vas a ejetura buton.operation()
 
