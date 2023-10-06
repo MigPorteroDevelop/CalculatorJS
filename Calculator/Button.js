@@ -1,11 +1,15 @@
 export default class Button {
-    static numberList1 = [];
-    static numberList2 = [];
-    static operatorList = "";
 
-    constructor(operator) {
-        this.operator = operator;
-        this.type = isNaN(operator) ? 'evaluator' : 'number';
+    constructor(parent, value) {
+        this.calculator = parent;
+        this.type = isNaN(value) ? 'evaluator' : 'number';
+
+        if( this.type == 'number' ) {
+            this.number = value;
+        } else {
+            this.evaluator = value;
+        }
+
         this.element = this.createElement();
         this.createEvent();
     }
@@ -13,24 +17,34 @@ export default class Button {
     createElement() {
         const element = document.createElement('button');
         element.classList.add('bg-white', 'border', 'border-black', 'rounded-md', 'text-center', 'text-lg', 'hover:bg-stone-100');
-        element.innerText = this.operator;
+        element.innerText = ( this.type == 'number' ) ? this.number : this.evaluator;
         return element;
     }
 
     createEvent() {
         this.element.addEventListener('click', () => {
+
             if (this.type === 'number') {
-                Button.numberList1.push(this.operator);
-                const concated1 = Button.numberList1.join("");
-                console.log(concated1);
+                this.calculator.currentNumbers += this.number;
+                this.calculator.inputCurrent.innerText = this.calculator.currentNumbers;
+                this.calculator.updateEvaluator();
+
             } else if (this.type === 'evaluator') {
-                Button.operatorList = this.operator;
-                console.log(Button.operatorList);
-                if (Button.numberList1.length > 0 && Button.operatorList !== "" && !isNaN(this.operator)) {
-                    Button.numberList2.push(this.operator);
-                    const concated2 = Button.numberList2.join("");
-                    console.log(concated2);
+                if( this.calculator.currentNumbers == '' ) return;
+                
+                this.calculator.inputResult.innerText = this.calculator.currentNumbers + ' ' + this.evaluator;
+                this.calculator.arrayEval.push( this.calculator.currentNumbers );
+                this.calculator.arrayEval.push( this.evaluator );
+                
+                this.calculator.updateEvaluator();
+                
+                this.calculator.currentNumbers = '';
+                if( this.evaluator == '=' ) {
+                    this.calculator.inputCurrent.innerText = this.calculator.evaluate();
+                    this.calculator.resetCurrent();
+
                 }
+
             } else {
                 alert('Error: Unknown type');
             }
