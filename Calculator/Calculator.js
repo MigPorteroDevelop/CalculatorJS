@@ -1,7 +1,7 @@
 import Button from "./Button.js";
 
 export default class {
-  
+
   constructor(element) {
     this.element = element;
     this.currentNumbers = '';
@@ -31,7 +31,7 @@ export default class {
 
     this.element.append(container);
   }
-  
+
   createButtons() {
     const arrayButtons = [7, 8, 9, `%`, 4, 5, 6, `x`, 1, 2, 3, `-`, 0, `.`, `=`, `+`];
     const container = document.createElement("div");
@@ -50,7 +50,7 @@ export default class {
 
     return list;
   }
-  
+
   createEvents() {
     // const showOperations = document.getElementsByClassName("showOperations")
     // if (Array.isArray(this.numbers) && this.numbers.length == 0) {
@@ -63,7 +63,7 @@ export default class {
 
 
 
-     
+
     /* iterar o recorre los botones(this.listButtons) 
       por cada boton, vas a ejetura buton.operation()
 
@@ -76,17 +76,17 @@ export default class {
     */
   }
 
-  evaluate () {
-    const strArrayEval = this.arrayEval.join('');
-    const ret = '';
+  evaluate() {
+    let strArrayEval = this.arrayEval.join('');
+    //let ret = strArrayEval;
 
-    if (isNaN(parseInt(strArrayEval.substr( strArrayEval.length - 1 )))) {
-      ret = strArrayEval.slice(0, -1);
-      console.dir(ret)
+    if (isNaN(parseInt(strArrayEval.substr(strArrayEval.length - 1)))) {
+      strArrayEval = strArrayEval.slice(0, -1);
+      console.dir(strArrayEval)
     }
-    // return eval(ret);
+     return eval(strArrayEval);
   }
-  resetCurrent () {
+  resetCurrent() {
     this.arrayEval = [];
     this.currentNumbers = '';
   }
