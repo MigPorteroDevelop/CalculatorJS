@@ -80,9 +80,8 @@ export default class {
     let strArrayEval = this.arrayEval.join('');
     //let ret = strArrayEval;
 
-    if (isNaN(parseInt(strArrayEval.substr(strArrayEval.length - 1)))) {
+    if (isNaN(parseInt(strArrayEval[strArrayEval.length - 1]))) {
       strArrayEval = strArrayEval.slice(0, -1);
-      console.dir(strArrayEval)
     }
      return eval(strArrayEval);
   }
