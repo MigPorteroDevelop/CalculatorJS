@@ -60,10 +60,6 @@ export default class {
     //    console.log("El array no está vacío");
     //  }
 
-
-
-
-
     /* iterar o recorre los botones(this.listButtons) 
       por cada boton, vas a ejetura buton.operation()
 
@@ -78,12 +74,13 @@ export default class {
 
   evaluate() {
     let strArrayEval = this.arrayEval.join('');
-    //let ret = strArrayEval;
+    strArrayEval = strArrayEval.replace('x', '*');
 
     if (isNaN(parseInt(strArrayEval[strArrayEval.length - 1]))) {
       strArrayEval = strArrayEval.slice(0, -1);
     }
-     return eval(strArrayEval);
+    
+    return eval(strArrayEval);
   }
   resetCurrent() {
     this.arrayEval = [];
