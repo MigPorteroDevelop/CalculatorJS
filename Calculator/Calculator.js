@@ -11,7 +11,6 @@ export default class {
     this.inputEvaluator = this.createInputEvaluator();
 
     this.listButtons = this.createButtons();
-    this.createEvents = this.createEvents();
   }
 
   createInputEvaluator() {
@@ -33,7 +32,7 @@ export default class {
   }
 
   createButtons() {
-    const arrayButtons = [7, 8, 9, `%`, 4, 5, 6, `x`, 1, 2, 3, `-`, 0, `.`, `=`, `+`];
+    const arrayButtons = [7, 8, 9, `%`, 4, 5, 6, `x`, 1, 2, 3, `-`, 0, `.`, `=`, `+`,`C`];
     const container = document.createElement("div");
     container.classList.add("grid", "grid-cols-4", 'gap-1');
 
@@ -49,27 +48,6 @@ export default class {
     this.element.append(container);
 
     return list;
-  }
-
-  createEvents() {
-    // const showOperations = document.getElementsByClassName("showOperations")
-    // if (Array.isArray(this.numbers) && this.numbers.length == 0) {
-    // console.log("El array está vacío");
-    //    console.log(this.numbers)
-    //  } else {
-    //    console.log("El array no está vacío");
-    //  }
-
-    /* iterar o recorre los botones(this.listButtons) 
-      por cada boton, vas a ejetura buton.operation()
-
-      this.inputCurrent concatenas o ejecutas el operador.
-
-      tip: eval('evalua un string, ejemplo: 22+5 77*xxxx')
-
-      this.inputCurrent.innerText = el concatenada (this.curretOperation)
-      this.inputResult.innerText = la evlauacion (this.curretResult)
-    */
   }
 
   evaluate() {

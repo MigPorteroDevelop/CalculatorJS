@@ -1,10 +1,13 @@
 export default class Button {
-
   constructor(parent, value) {
     this.calculator = parent;
-    this.type = isNaN(value) ? 'evaluator' : 'number';
+    if (value === "C") {
+      this.type = "C";
+    } else {
+      this.type = isNaN(value) ? "evaluator" : "number";
+    }
 
-    if (this.type == 'number') {
+    if (this.type === "number") {
       this.number = value;
     } else {
       this.evaluator = value;
@@ -15,38 +18,49 @@ export default class Button {
   }
 
   createElement() {
-    const element = document.createElement('button');
-    element.classList.add('bg-white', 'border', 'border-black', 'rounded-md', 'text-center', 'text-lg', 'hover:bg-stone-100');
-    element.innerText = (this.type == 'number') ? this.number : this.evaluator;
+    const element = document.createElement("button");
+    element.classList.add(
+      "bg-white",
+      "border",
+      "border-black",
+      "rounded-md",
+      "text-center",
+      "text-lg",
+      "hover:bg-stone-100"
+    );
+    element.innerText = this.type == "number" ? this.number : this.evaluator;
     return element;
   }
 
   createEvent() {
-    this.element.addEventListener('click', () => {
-
-      if (this.type === 'number') {
+    this.element.addEventListener("click", () => {
+      if (this.type === "number") {
         this.calculator.currentNumbers += this.number;
         this.calculator.inputCurrent.innerText = this.calculator.currentNumbers;
         this.calculator.updateEvaluator();
+      } else if (this.type === "evaluator") {
+        if (this.calculator.currentNumbers == "") return;
 
-      } else if (this.type === 'evaluator') {
-        if (this.calculator.currentNumbers == '') return;
-
-        this.calculator.inputResult.innerText = this.calculator.currentNumbers + ' ' + this.evaluator;
+        this.calculator.inputResult.innerText =
+          this.calculator.currentNumbers + " " + this.evaluator;
         this.calculator.arrayEval.push(this.calculator.currentNumbers);
         this.calculator.arrayEval.push(this.evaluator);
 
         this.calculator.updateEvaluator();
 
-        this.calculator.currentNumbers = '';
-        if (this.evaluator == '=') {
+        this.calculator.currentNumbers = "";
+        if (this.evaluator == "=") {
           this.calculator.inputCurrent.innerText = this.calculator.evaluate();
           this.calculator.resetCurrent();
-
         }
-
+      } else if (this.type === "C") {
+        this.calculator.currentNumbers = ""; // Limpiar el número actual
+        this.calculator.inputCurrent.innerText = ""; // Limpiar la pantalla de entrada
+        
+        this.calculator.strArrayEval = "";
+        this.calculator.inputResult.innerText = "";
       } else {
-        alert('Error: Unknown type');
+        alert("Error: Unknown type");
       }
     });
   }
